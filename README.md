@@ -347,7 +347,7 @@ function onCompletion(xhr, status){
 
 ## Independent Practice
 Refine the skills covered in this workshop with this
-[Giphy API training](https://github.com/sf-wdi-31/giffaw).
+[Giphy API training](https://github.com/sf-wdi-34/giffaw).
 
 For a solution, checkout the `solution` branch or find it [here on GitHub](https://github.com/sf-wdi-34/giffaw/tree/solution).
 

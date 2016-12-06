@@ -35,12 +35,18 @@ In order to make complex web apps, we will probably want information from some o
 
 ## Review
 
+
+1.  Explain the diagram below. 
+
+   ![](https://cloud.githubusercontent.com/assets/3010270/13685348/dc94566e-e6c4-11e5-80f6-706d28da26c3.png)
+
+2. Go to [this piece of JSON](http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC). Assume that the entire object returned is called `response` and answer the following questions:
+
+  - Where does this data come from? What search term generated this data?
+  - How would you access the fixed height image URL of the first result?
+
 ![catz](http://media2.giphy.com/media/3o72EX5QZ9N9d51dqo/200.gif)
 
-Go to [this piece of JSON](http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC). Assume that the entire object returned is called `response` and answer the following questions:
-
-1. Where does this data come from? What search term generated this data?
-2. How would you access the fixed height image URL of the first result?
 
 ## APIs
 ![API gif](https://github.com/Giphy/GiphyAPI/blob/master/api_giphy_header.gif?raw=true)
@@ -77,9 +83,6 @@ With a partner, spend 10 minutes on the following:
     1. Does this API require an API key?
     1. Can you view an API endpoint url in your browser? Do it!
     
-## Review: The Request-Response Cycle
-
-![](https://cloud.githubusercontent.com/assets/3010270/13685348/dc94566e-e6c4-11e5-80f6-706d28da26c3.png)
 
 ## AJAX
 

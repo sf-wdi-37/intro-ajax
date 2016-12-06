@@ -11,23 +11,27 @@ Market: SF
 <!-- framing the "why" in big-picture/real world examples -->
 *This workshop is important because:*
 
-AJAX is the means by which we access data from external resources through APIs. In order to make complex web apps, we will need to access data from some of the amazing resources that provide rich, useful data. If you want to integrate maps, social media, live searched images, or any other user controlled data, you're going to need an API and AJAX to access it.
+AJAX is a fast, user-friendly way to access data from external resources, when that data is available through a web API.
+
+In order to make complex web apps, we will probably want information from some of the amazing resources that provide rich, useful data. If you want to integrate maps, social media, live searched images, or any other user controlled data, you're going to want an API and AJAX to access it.
 
 ### What are the objectives?
 <!-- specific/measurable goal for students to achieve -->
 *After this workshop, developers will be able to:*
 
 - find and read documentation for useful APIs
-- give an instance when AJAX would be used in your code
-- use AJAX to GET data from an API
-- describe the meaning of `method:`, `url:`, and `onSuccess:` keys in jQuery's `$.ajax` syntax
+- give an example of when AJAX would be used in your code
+- explain the difference between AJAX and synchronous web data transfer
+- use AJAX with jQuery's `$.ajax` to GET data from an API
+- describe the meaning of `method:`, `url:`, and `success:` keys in jQuery's `$.ajax` syntax
 
 ### Where should we be now?
 <!-- call out the skills that are prerequisites -->
 *Before this workshop, developers should already be able to:*
 
-- read JSON and access specific attributes of a large piece of JSON.
-- explain that callbacks are functions passed around to be executed later.
+- read JSON and access specific attributes of a large piece of JSON
+- explain that callbacks are functions passed around to be executed later
+- describe the request-response cycle and HTTP's role in it
 
 ## Review
 
@@ -43,21 +47,27 @@ Go to [this piece of JSON](http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc
 
 An Application Program Interface (API) is the way in which you interact with a piece of software. In other words it is the interface for an application or a program.
 
-  * Organizations have APIs to publicly expose parts of their program to the outside world, allowing people to send them queries and receive data (e.g. [GitHub API](https://developer.github.com/v3) ), but this is a narrow view of what the term fully encompasses.
-  * Remember, even an `Array` has an API. Its API consists of all the methods that can be called on it, such as: `.forEach`, `.pop`, `.length` etc. See the full list: `Object.getOwnPropertyNames(Array.prototype)`.
 
-A **GUI** exists to make an application more convenient for the user. An **API** does the same for its users, but with a lexical rather than a graphical interface.
+  * Even an `Array` has an API. Its API consists of all the methods that can be called on it, such as: `.forEach`, `.pop`, `.length` etc. See the full list: `Object.getOwnPropertyNames(Array.prototype)`.
+  * Organizations have *web APIs* to publicly expose parts of their services to the outside world, allowing people to send them queries and receive data (e.g. [GitHub API](https://developer.github.com/v3) ).  Web APIs are the kind of APIs we'll focus on today. 
+
+A **GUI** exists to make an application more convenient for a sighted user to interact with visually. An **API** does something similar - except its users are developers, and they interact with the API through programming languages and specific protocols.  Learning to use an API is a little like learning to use a new application on your computer. Here are a few ways they're alike:
+
+- You have to follow the rules set out by the API or GUI.  
+- You can make guesses and experiment, but it's easier to start with some documentation.
+- Practice using APIs or GUIs helps you find patterns that carry over to other programs. 
 
 #### Some useful APIs
-[Instagram](https://www.instagram.com/developer/), [Food2Fork](http://food2fork.com/about/api), [Twitter](https://dev.twitter.com/overview/documentation), [Spotify](https://developer.spotify.com/web-api/), [Google Books](https://developers.google.com/books/), [Google Maps](https://developers.google.com/maps/), [WeatherUnderground](https://www.wunderground.com/weather/api/), [Giphy](https://github.com/Giphy/GiphyAPI), [YouTube](https://developers.google.com/youtube/?csw=1#data_api),  etc.
+[Food2Fork](http://food2fork.com/about/api), [Twitter](https://dev.twitter.com/overview/documentation), [Spotify](https://developer.spotify.com/web-api/), [Google Books](https://developers.google.com/books/), [Google Maps](https://developers.google.com/maps/), [WeatherUnderground](https://www.wunderground.com/weather/api/), [Giphy](https://github.com/Giphy/GiphyAPI), [YouTube](https://developers.google.com/youtube/?csw=1#data_api),  etc.
 
 #### First Encounter with an API
 
 Follow along as I show you how I'd initially investigate the [Spotify API](https://developer.spotify.com/web-api/).
 
-- look at documentation.
-- pick an endpoint.
-- try to go to that endpoint and inspect some data.
+1. Find documentation. 
+1. Check for any restrictions (authorization, API key, wait time for approval, etc.). 
+2. Pick an endpoint.
+3. Try to go to that endpoint and inspect some data.
 
 #### Breakout
 With a partner, spend 10 minutes on the following:
@@ -66,6 +76,10 @@ With a partner, spend 10 minutes on the following:
     1. How would you access the data that you're interested in? For example, for [Giphy](https://github.com/Giphy/GiphyAPI), the gif data that we're interested in is [located in the `data` array](https://github.com/Giphy/GiphyAPI#sample-response-search).
     1. Does this API require an API key?
     1. Can you view an API endpoint url in your browser? Do it!
+    
+## Review: The Request-Response Cycle
+
+![](https://cloud.githubusercontent.com/assets/3010270/13685348/dc94566e-e6c4-11e5-80f6-706d28da26c3.png)
 
 ## AJAX
 
@@ -73,28 +87,33 @@ __Asynchronous JavaScript And XML__ (AJAX) allows us to make requests to a serve
 
 Let's break that down:
 
-__Asynchronous__ - not happening at the same time. Some of your code will be executed at a later time. Specifically, when you hear back from a server about a request you made sometime in the past. This waiting time won't hold up the performance of the rest of your page.
+__Asynchronous__ - not happening at the same time. Some of your code will be executed at a later time. Specifically, a callback will run when you get the results of your request - even if takes a while.  This waiting time won't hold up the performance of the rest of your page.
 
-__XML__ - another format for structuring data so that it can be sent and received. XML has mostly been replaced by JSON and AJAX doesn't require the use of XML. You might even see the words "X stands for JSON" some place on the web.
+__XML__ - a format for structuring data so that it can be sent and received across the web. XML has mostly been replaced by JSON, and AJAX can be used with either JSON or XML.
 
-You may also hear the term `XMLHttpRequest`. This is the same thing as AJAX! In fact, `window` object in the Browser has available to it another object, `XMLHttpRequest`. This is how you would make these types of requests without using jQuery.
+You may also hear the term `XMLHttpRequest`. This is how vanilla JavaScript does AJAX. In fact, `window` object in the Browser has available to it another object, `XMLHttpRequest`. JavaScript's `XMLHttpRequest`s are notoriously annoying to create, so jQuery's shorthand (the `$.ajax()` function) is one of jQuery's most popular features.
 
 
 #### Why do we care?
 
-* AJAX lets us exchange data with the server behind the scenes. When a change is made on the client we can send off an AJAX Request to notify the server of what just happened. This is an important way to maintain state between a client and a server that communicate in HTTP, an inherently stateless protocol.
+* In the past, requests had a "synchronous" workflow, where the user had to wait for the request to come back before anything else could happen on the page.  Synchronous requests also require the page to reload. 
 
-* In the past, requests to outside pages required your page to reload. Limiting page reloads makes our web apps feel *faster* and mostly gives our users a *better experience*. Imagine if you experienced a full page refresh every time you "liked" a post on Facebook...
+* AJAX lets us exchange data with the server behind the scenes. When a change is made on the client, we can use AJAX to send a request and notify the server of what just happened. This is an important way to maintain state between a client and a server that communicate in HTTP, an inherently stateless protocol.
 
-![](http://www.cs.uky.edu/~paulp/CS316/CS316AJAX_html_m2fd58f08.png)
+
+* **Limiting page reloads makes our web apps feel *faster* and mostly gives our users a *better experience*.** Imagine if you experienced a full page refresh every time you "liked" a post on Facebook....  The requests we've made so far have been synchronous. 
+
 
 ![](http://www.cs.uky.edu/~paulp/CS316/CS316AJAX_html_m79697898.png)
 
-AJAX is the doorman! It knows what requests are out and what to do when they return. The code (hotel) can keep operating without thinking a request (guest) is missing.
+![](http://www.cs.uky.edu/~paulp/CS316/CS316AJAX_html_m2fd58f08.png)
+
+
+AJAX is the doorman! It knows what requests are out and what to do when they return. The code (hotel) can keep operating without waiting for a single request (guest) to complete.
 
 ![](http://photos.mandarinoriental.com/is/image/MandarinOriental/dmo-people-london-doorman?$DMOBanner$&crop=355,272,2624,913&anchor=1667,728)
 
-#### How do we use it?
+#### How do we use AJAX?
 
 jQuery gives us [several methods](https://api.jquery.com/category/AJAX) for making AJAX requests. We're going to stick to using the `$.ajax()` method [available here](https://api.jquery.com/jQuery.ajax/).
 
@@ -140,22 +159,15 @@ $.ajax({
 
 // defining the callback function that will happen
 // if the request succeeds.
-function onSuccess(json) {
-    console.log(json);
+function onSuccess(responseData) {
+    console.log(responseData);
     // celebrate!
 };
 ```
 <!--
 If we're doing a simple `GET` request, we can (and should) avoid the `$.ajax()` method and use the helper method `$.get()` instead. Here, we only need to pass in the request URL and callback function for the same AJAX request as the example above.
 
-```js
-var endpoint = 'https://api.spotify.com/v1/artists/1jTAvg7eLZQFonjWIXHiiT';
-$.get(endpoint, function(response_data) {
-  // creating a global variable to inspect the new data is good
-  // just remember to make it local once your done inspecting!
-  window.newData = response_data;
-});
-``` -->
+-->
 
 For a `POST` request, we can also use the `$.ajax()` method, but this time, the data type is `"POST"`. Since `POST` requests send data to a server, we also need to send an object of `data` (the `book`).
 
@@ -173,14 +185,14 @@ $.ajax({
   success: onSuccess
 });
 
-function onSuccess(json) {
-  console.log(json);
+function onSuccess(responseData) {
+  console.log(responseData);
   // celebrate!
 };
 
 ```
 
-<!-- Just like with `GET`, the `POST` request above can be refactored to use the much simpler `$.post()` method. We pass in the request URL, data, and callback function. Note: there is an equivalent [`$.get()`](https://api.jquery.com/jquery.get/) method as well.
+<!-- Just like with `GET`, the `POST` request above can be refactored to use the much simpler `$.post()` method. We pass in the request URL, data, and callback function. 
 
 ```js
 var book_data = {
@@ -210,13 +222,14 @@ $('button').on('click', function(event) {
   });
 });
 
-function onClickReqSuccess(json){
-  console.log(json);
+function onClickReqSuccess(responseData){
+  console.log(responseData);
   // process data
 }
 
 // submit event on form
 $('form').on('submit', function(event){
+  event.preventDefault();
   $.ajax({
     method: 'GET',
     url: endpoint,
@@ -225,18 +238,19 @@ $('form').on('submit', function(event){
   });
 });
 
-function onSubmitReqSuccess(json){
-  console.log(json);
+function onSubmitReqSuccess(responseData){
+  console.log(responseData);
   // process data
 }
 
 ```
 
-Sometimes we'll need to include user input for our GET requests. For example, when searching Giphy for cat gifs, we would include a `data` attribute with a string indicating the value of `q`, the search query. (Note: `data` will accept an object also.)
+Sometimes we'll need to send data to an API in order for it to process our requests. For example, the Giphy API requires a `q` query paramater for the search endpoint.  When searching Giphy with `$.ajax()`, we include a `data` object or query string with a key-value pair inside indicating the value of `q`. 
 
 ```javascript
 // submit event on form
 $('form').on('submit', function(event){
+  event.preventDefault();
   $.ajax({
     method: 'GET',
     url: endpoint,
@@ -246,12 +260,14 @@ $('form').on('submit', function(event){
   });
 });
 
-function onSubmitReqSuccess(json){
-  console.log(json);
+function onSubmitReqSuccess(responseData){
+  console.log(responseData);
   // process data
 }
 ```
-Often this data will come in through a form. Luckily, when it comes in through a form, jQuery provides a method called `serialize()` that transitions our form data into a string that we can just plug into the `data` attribute, like this:
+
+
+If this data comes from the user, it will often be in a form. Luckily, jQuery provides a method called `serialize()` that transitions form data into a string that we can easily plug into the `data` attribute, like this:
 
 ```javascript
 // submit event on form
@@ -266,8 +282,8 @@ $('form').on('submit', function(event){
   });
 });
 
-function onSubmitReqSuccess(json){
-  console.log(json);
+function onSubmitReqSuccess(responseData){
+  console.log(responseData);
   // process data
 }
 ```
@@ -280,7 +296,9 @@ As long as the form `<input>` fields have the proper `name` attribute (in this c
 
 #### Handling Success and Failure
 
-We can't guarantee that our API will respond, or will respond quick enough. In these cases the AJAX request will fail or error. Using the `$.ajax()` syntax we can handle these eventualities by including `error` and `complete` attributes on our initial request:
+When everything goes well, we'll get a response with an HTTP *status* in the 200s. The `$.ajax` function checks this status to see if the request was sucessful.  If the status is in the 200s, it runs the success callback. 
+
+We can't guarantee that an API will respond or respond quick enough. In these cases, the AJAX request will fail or give an error. Using the `$.ajax()` syntax, we can handle these cases by including `error` and `complete` attributes on our initial request:
 
 ```js
 var endpoint = 'https://api.spotify.com/v1/search?q=come%20together&type=track';
@@ -294,7 +312,7 @@ $.ajax({
   complete: onCompletion
 });
 
-function onSuccess(json){
+function onSuccess(responseData){
   /*  perform this function if the
      status code of the response was in
      the 200s */
@@ -322,15 +340,15 @@ function onCompletion(json){
 Refine the skills covered in this workshop with this
 [Giphy API training](https://github.com/sf-wdi-31/giffaw).
 
-For a solution, checkout the `solution` branch or find it [here on GitHub](https://github.com/sf-wdi-31/giffaw/tree/solution).
+For a solution, checkout the `solution` branch or find it [here on GitHub](https://github.com/sf-wdi-34/giffaw/tree/solution).
 
-For a solution to the bonus checkout the `solution-more` branch or find it here on [GitHub](https://github.com/sf-wdi-31/giffaw/tree/solution-more).
+For a solution to the bonus checkout the `solution-more` branch or find it here on [GitHub](https://github.com/sf-wdi-34/giffaw/tree/solution-more).
 
 ## Closing Thoughts
-- APIs open an entire world of more complex projects! Now, you can access them using AJAX.
-- The syntax of the `$.ajax()` function is complicated, but more practice will familiarize you with its uses and complexity. Check in on whether you can explain `method:`, `url:`, and `onSuccess:` without any outside resources.
+- APIs open an entire world of more complex projects! All you need to access them is an understanding of HTTP.  Now, though, you can access them using AJAX for a smoother, faster user experience. 
+- The syntax of the `$.ajax()` function is complicated, but more practice will familiarize you with its uses and complexity. Check in on whether you can explain `method:`, `url:`, and `success:` without any outside resources.
 - Tomorrow we'll be working with the USGS earthquake API to display all of the most recent earthquakes using AJAX!
-- Later in the week, we'll be working with APIs that we can POST data to and update the databases that are hiding on the backend.
+- Later in the week, we'll be working with APIs that we can POST data to and update data in databases.
 
 ## Additional Resources
 - [jQuery's `$.ajax()` documentation](http://api.jquery.com/jquery.ajax/)

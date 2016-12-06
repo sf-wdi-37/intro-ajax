@@ -53,7 +53,7 @@ In order to make complex web apps, we will probably want information from some o
 
 An Application Program Interface (API) is the way in which you interact with a piece of software. In other words it is the interface for an application or a program.
 
-
+  * You've browsed jQuery's API documentation - http://api.jquery.com/.  jQuery's API is basically the set of objects and functions it gives us above and beyond standard JavaScript.
   * Even an `Array` has an API. Its API consists of all the methods that can be called on it, such as: `.forEach`, `.pop`, `.length` etc. See the full list: `Object.getOwnPropertyNames(Array.prototype)`.
   * Organizations have *web APIs* to publicly expose parts of their services to the outside world, allowing people to send them queries and receive data (e.g. [GitHub API](https://developer.github.com/v3) ).  Web APIs are the kind of APIs we'll focus on today. 
 

@@ -56,15 +56,21 @@ An Application Program Interface (API) is the way in which you interact with a p
   * You've browsed jQuery's API documentation - http://api.jquery.com/.  jQuery's API is basically the set of objects and functions it gives us above and beyond standard JavaScript.
   * Even an `Array` has an API. Its API consists of all the methods that can be called on it, such as: `.forEach`, `.pop`, `.length` etc. See the full list: `Object.getOwnPropertyNames(Array.prototype)`.
   * Organizations have *web APIs* to publicly expose parts of their services to the outside world, allowing people to send them queries and receive data (e.g. [GitHub API](https://developer.github.com/v3) ).  Web APIs are the kind of APIs we'll focus on today. 
+  
 
-A **GUI** exists to make an application more convenient for a sighted user to interact with visually. An **API** does something similar - except its users are developers, and they interact with the API through programming languages and specific protocols.  Learning to use an API is a little like learning to use a new application on your computer. Here are a few ways they're alike:
+#### Some useful APIs
+[Food2Fork](http://food2fork.com/about/api), [Twitter](https://dev.twitter.com/overview/documentation), [Spotify](https://developer.spotify.com/web-api/), [Google Books](https://developers.google.com/books/), [Google Maps](https://developers.google.com/maps/), [WeatherUnderground](https://www.wunderground.com/weather/api/), [Giphy](https://github.com/Giphy/GiphyAPI), [YouTube](https://developers.google.com/youtube/?csw=1#data_api),  etc.
+
+
+#### Learning to use an API
+
+A **GUI** (graphical user interface) exists to make an application more convenient for a sighted user to interact with visually. An **API** does something similar - except its users are developers, and they interact with the API through programming languages and specific protocols.  Learning to use an API is a little like learning to use a new application on your computer. Here are a few ways they're alike:
 
 - You have to follow the rules set out by the API or GUI.  
 - You can make guesses and experiment, but it's easier to start with some documentation.
 - Practice using APIs or GUIs helps you find patterns that carry over to other programs. 
 
-#### Some useful APIs
-[Food2Fork](http://food2fork.com/about/api), [Twitter](https://dev.twitter.com/overview/documentation), [Spotify](https://developer.spotify.com/web-api/), [Google Books](https://developers.google.com/books/), [Google Maps](https://developers.google.com/maps/), [WeatherUnderground](https://www.wunderground.com/weather/api/), [Giphy](https://github.com/Giphy/GiphyAPI), [YouTube](https://developers.google.com/youtube/?csw=1#data_api),  etc.
+
 
 #### First Encounter with an API
 

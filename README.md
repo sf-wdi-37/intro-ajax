@@ -20,10 +20,10 @@ In order to make complex web apps, we will probably want information from some o
 *After this workshop, developers will be able to:*
 
 - find and read documentation for useful APIs
-- give an example of when AJAX would be used in your code
 - explain the difference between AJAX and synchronous web data transfer
 - use AJAX with jQuery's `$.ajax` to GET data from an API
 - describe the meaning of `method:`, `url:`, and `success:` keys in jQuery's `$.ajax` syntax
+- give an example of where AJAX would be used in code for a website
 
 ### Where should we be now?
 <!-- call out the skills that are prerequisites -->

@@ -312,7 +312,7 @@ $.ajax({
   complete: onCompletion
 });
 
-function onSuccess(responseData){
+function onSuccess(responseData, status, xhr){
   /*  perform this function if the
      status code of the response was in
      the 200s */
@@ -330,7 +330,7 @@ function onError(xhr, status, errorThrown){
      message associated with that status */
 };
 
-function onCompletion(responseData, status, xhr){
+function onCompletion(xhr, status){
   /* perform this no matter the status
      code of the response */
 };

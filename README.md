@@ -330,7 +330,7 @@ function onError(xhr, status, errorThrown){
      message associated with that status */
 };
 
-function onCompletion(json){
+function onCompletion(responseData, status, xhr){
   /* perform this no matter the status
      code of the response */
 };

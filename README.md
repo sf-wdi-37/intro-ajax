@@ -43,7 +43,7 @@ In order to make complex web apps, we will probably want information from some o
 2. Go to [this piece of JSON](http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC). Assume that the entire object returned is called `response` and answer the following questions:
 
   - Where does this data come from? What search term generated this data?
-  - How would you access the fixed height image URL of the first result?
+  - How would you access the fixed height image URL of the first result? (Try to figure this out without using JSONView's help first.)
 
 ![catz](http://media2.giphy.com/media/3o72EX5QZ9N9d51dqo/200.gif)
 
@@ -56,6 +56,8 @@ An Application Program Interface (API) is the way in which you interact with a p
   * You've browsed jQuery's API documentation - http://api.jquery.com/.  jQuery's API is basically the set of objects and functions it gives us above and beyond standard JavaScript.
   * Even an `Array` has an API. Its API consists of all the methods that can be called on it, such as: `.forEach`, `.pop`, `.length` etc. See the full list: `Object.getOwnPropertyNames(Array.prototype)`.
   * Organizations have *web APIs* to publicly expose parts of their services to the outside world, allowing people to send them queries and receive data (e.g. [GitHub API](https://developer.github.com/v3) ).  Web APIs are the kind of APIs we'll focus on today. 
+
+When we read the documentation for an API, you can compare it to a contract. The documentation explains how you can interact with an API, and defines how the API will respond to your requests.
   
 
 #### Some useful APIs
@@ -347,17 +349,17 @@ function onCompletion(xhr, status){
 
 ## Independent Practice
 Refine the skills covered in this workshop with this
-[Giphy API training](https://github.com/sf-wdi-34/giffaw).
+[Giphy API training](https://github.com/SF-WDI-LABS/giffaw).
 
-For a solution, checkout the `solution` branch or find it [here on GitHub](https://github.com/sf-wdi-34/giffaw/tree/solution).
+For a solution, checkout the `solution` branch or find it [here on GitHub](https://github.com/SF-WDI-LABS/giffaw/tree/solution).
 
-For a solution to the bonus checkout the `solution-more` branch or find it here on [GitHub](https://github.com/sf-wdi-34/giffaw/tree/solution-more).
+For a solution to the bonus checkout the `solution-more` branch or find it here on [GitHub](https://github.com/SF-WDI-LABS/giffaw/tree/solution-more).
 
 ## Closing Thoughts
 - APIs open an entire world of more complex projects! All you need to access them is an understanding of HTTP.  Now, though, you can access them using AJAX for a smoother, faster user experience. 
 - The syntax of the `$.ajax()` function is complicated, but more practice will familiarize you with its uses and complexity. Check in on whether you can explain `method:`, `url:`, and `success:` without any outside resources.
 - Tomorrow we'll be working with the USGS earthquake API to display all of the most recent earthquakes using AJAX!
-- Later in the week, we'll be working with APIs that we can POST data to and update data in databases.
+- Later, we'll be working with APIs that we can POST data to and update data in databases.
 
 ## Additional Resources
 - [jQuery's `$.ajax()` documentation](http://api.jquery.com/jquery.ajax/)

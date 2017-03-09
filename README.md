@@ -150,6 +150,10 @@ Using jQuery's `$.ajax()` method, we can specify several parameters, including:
 * data type
 * callback function (which will run on successful completion of the AJAX request)
 
+Here's some examples of the data we'll be looking at:
+https://api.spotify.com/v1/artists/4TnXB5yHH3ACRKmSKhXmNx
+https://api.spotify.com/v1/artists/0k17h0D3J5VfsdmQ1iZtE9
+
 Let's try sending a `GET` request to [Spotify's API](https://developer.spotify.com/web-api/search-item)
 
 ```js
@@ -158,7 +162,7 @@ $.ajax({
   method: 'GET',
 
   // The URL for the request
-  url: 'https://api.spotify.com/v1/artists/1jTAvg7eLZQFonjWIXHiiT',
+  url: 'https://api.spotify.com/v1/artists/4TnXB5yHH3ACRKmSKhXmNx',
 
   // The type of data we want back
   dataType: 'json',

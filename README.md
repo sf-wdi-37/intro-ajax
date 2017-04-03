@@ -13,14 +13,14 @@ Market: SF
 
 AJAX is a fast, user-friendly way to access data from external resources, when that data is available through a web API.
 
-In order to make complex web apps, we will probably want information from some of the amazing resources that provide rich, useful data. If you want to integrate maps, social media, live searched images, or any other user controlled data, you're going to want an API and AJAX to access it.
+In order to make complex web apps, we will probably want information from some of the amazing resources that provide rich, useful data. If you want to integrate maps, social media, live searched images, or any other user controlled data, you're going to want to use an API. If you want to reduce page refreshes from HTTP requests/reponses, AJAX is the tool for you!
 
 ### What are the objectives?
 <!-- specific/measurable goal for students to achieve -->
 *After this workshop, developers will be able to:*
 
 - find and read documentation for useful APIs
-- explain the difference between AJAX and synchronous web data transfer
+- explain the difference between AJAX and normal HTTP synchronous web data transfer 
 - use AJAX with jQuery's `$.ajax` to GET data from an API
 - describe the meaning of `method:`, `url:`, and `success:` keys in jQuery's `$.ajax` syntax
 - give an example of where AJAX would be used in code for a website
@@ -43,7 +43,7 @@ In order to make complex web apps, we will probably want information from some o
 2. Go to [this piece of JSON](http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC). Assume that the entire object returned is called `response` and answer the following questions:
 
   - Where does this data come from? What search term generated this data?
-  - How would you access the fixed height image URL of the first result? (Try to figure this out without using JSONView's help first.)
+  - How would you access the fixed height image URL of the first result?
 
 ![catz](http://media2.giphy.com/media/3o72EX5QZ9N9d51dqo/200.gif)
 
@@ -51,10 +51,10 @@ In order to make complex web apps, we will probably want information from some o
 ## APIs
 ![API gif](https://github.com/Giphy/GiphyAPI/blob/master/api_giphy_header.gif?raw=true)
 
-An Application Program Interface (API) is the way in which you interact with a piece of software. In other words it is the interface for an application or a program.
+An Application Program Interface (API) is the way in which you interact with a piece of software. In other words, it is the interface for an application or a program.
 
   * You've browsed jQuery's API documentation - http://api.jquery.com/.  jQuery's API is basically the set of objects and functions it gives us above and beyond standard JavaScript.
-  * Even an `Array` has an API. Its API consists of all the methods that can be called on it, such as: `.forEach`, `.pop`, `.length` etc. See the full list: `Object.getOwnPropertyNames(Array.prototype)`.
+  * Even a vanilla JavaScript `Array` has an API. Its API consists of all the methods that can be called on it, such as: `.forEach`, `.pop`, `.length` etc. See the full list: `Object.getOwnPropertyNames(Array.prototype)`.
   * Organizations have *web APIs* to publicly expose parts of their services to the outside world, allowing people to send them queries and receive data (e.g. [GitHub API](https://developer.github.com/v3) ).  Web APIs are the kind of APIs we'll focus on today. 
 
 When we read the documentation for an API, you can compare it to a contract. The documentation explains how you can interact with an API, and defines how the API will respond to your requests.
@@ -80,7 +80,7 @@ Follow along as I show you how I'd initially investigate the [Spotify API](https
 
 1. Find documentation. 
 1. Check for any restrictions (authorization, API key, wait time for approval, etc.). 
-2. Pick an endpoint.
+2. Pick an endpoint to try (GET routes work best for exploration!).
 3. Try to go to that endpoint and inspect some data.
 
 #### Breakout
@@ -111,7 +111,6 @@ You may also hear the term `XMLHttpRequest`. This is how vanilla JavaScript does
 
 * AJAX lets us exchange data with the server behind the scenes. When a change is made on the client, we can use AJAX to send a request and notify the server of what just happened. This is an important way to maintain state between a client and a server that communicate in HTTP, an inherently stateless protocol.
 
-
 * **Limiting page reloads makes our web apps feel *faster* and mostly gives our users a *better experience*.** Imagine if you experienced a full page refresh every time you "liked" a post on Facebook....  The requests we've made so far have been synchronous. 
 
 
@@ -137,15 +136,15 @@ The HTTP protocol was designed specifically for web browsers and servers to comm
   * A browser will use `GET` to indicate it would like to receive a specific web page or resource from a server.
   * A browser will use `POST` to indicate it would like to send some data to a server.
 
-Conveniently can use AJAX to make both `GET` and `POST` requests to servers. From the perspective of the server, it is just another request.
+Conveniently, we can use AJAX to make both `GET` and `POST` requests to servers. From the perspective of the server, it is just another request.
 
 jQuery gives us the [`$.ajax()`](https://api.jquery.com/jQuery.ajax) method, which will allow us to perform any AJAX request.
 
 ## AJAX Setup
 
-Using jQuery's `$.ajax()` method, we can specify several parameters, including:
+Using jQuery's `$.ajax()` method, we can specify several parameters.  Here's a good set to start with:
 
-* What kind of request
+* kind of request (verb)
 * request URL
 * data type
 * callback function (which will run on successful completion of the AJAX request)
@@ -184,7 +183,7 @@ If we're doing a simple `GET` request, we can (and should) avoid the `$.ajax()` 
 
 -->
 
-For a `POST` request, we can also use the `$.ajax()` method, but this time, the data type is `"POST"`. Since `POST` requests send data to a server, we also need to send an object of `data` (the `book`).
+For a `POST` request, we can also use the `$.ajax()` method, but this time, the request type is `"POST"`. Since `POST` requests send data to a server, we also need to send an object or string for `data` (the `bookData` in the example below).
 
 ```js
 var bookData = {
@@ -260,7 +259,7 @@ function onSubmitReqSuccess(responseData){
 
 ```
 
-Sometimes we'll need to send data to an API in order for it to process our requests. For example, the Giphy API requires a `q` query paramater for the search endpoint.  When searching Giphy with `$.ajax()`, we include a `data` object or query string with a key-value pair inside indicating the value of `q`. 
+Often, we'll need to send data to an API in order for it to process our requests. For example, the Giphy API requires a `q` query paramater for the search endpoint.  You've seen that we can include a `data` key in a `$.ajax()` call. When searching Giphy with `$.ajax()`, we could use an object or a string to indicate the value of `q`. 
 
 ```javascript
 // submit event on form
@@ -282,7 +281,7 @@ function onSubmitReqSuccess(responseData){
 ```
 
 
-If this data comes from the user, it will often be in a form. Luckily, jQuery provides a method called `serialize()` that transitions form data into a string that we can easily plug into the `data` attribute, like this:
+If this data comes from the user, it will often be in a form. Luckily, jQuery provides a method called `serialize()` that translates form data into a string. Then, we can easily plug the result into the `data` attribute, like this:
 
 ```javascript
 // submit event on form
@@ -290,8 +289,8 @@ $('form').on('submit', function(event){
   $.ajax({
     method: 'GET',
     url: endpoint,
-    // The data to send aka query parameters
-		data: $("form").serialize(),
+    // The data to send (query parameters)
+    data: $("form").serialize(),
     dataType: 'json',
     success: onSubmitReqSuccess
   });

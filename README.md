@@ -42,7 +42,7 @@ In order to make complex web apps, we will probably want information from some o
 
 2. Go to [this piece of JSON](http://api.giphy.com/v1/gifs/search?q=cats&api_key=dc6zaTOxFJmzC). Assume that the entire object returned is called `response` and answer the following questions:
 
-  - Where does this data come from? What search term generated this data?
+  - Looking at the comments added by JSONViewer, where does this data come from? What search term generated this data?
   - How would you access the fixed height image URL of the first result?
 
 ![catz](http://media2.giphy.com/media/3o72EX5QZ9N9d51dqo/200.gif)

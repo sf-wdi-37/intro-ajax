@@ -352,11 +352,11 @@ function onCompletion(xhr, status){
 
 ## Independent Practice
 Refine the skills covered in this workshop with this
-[Giphy API training](https://github.com/SF-WDI-LABS/giffaw).
+[Giphy API training](https://github.com/SF-WDI-37/giffaw).
 
-For a solution, checkout the `solution` branch or find it [here on GitHub](https://github.com/SF-WDI-LABS/giffaw/tree/solution).
+For a solution, checkout the `solution` branch or find it [here on GitHub](https://github.com/SF-WDI-37/giffaw/tree/solution).
 
-For a solution to the bonus checkout the `solution-more` branch or find it here on [GitHub](https://github.com/SF-WDI-LABS/giffaw/tree/solution-more).
+For a solution to the bonus checkout the `solution-more` branch or find it here on [GitHub](https://github.com/SF-WDI-37/giffaw/tree/solution-more).
 
 ## Closing Thoughts
 - APIs open an entire world of more complex projects! All you need to access them is an understanding of HTTP.  Now, though, you can access them using AJAX for a smoother, faster user experience. 

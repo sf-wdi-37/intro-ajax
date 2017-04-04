@@ -19,7 +19,7 @@ In order to make complex web apps, we will probably want information from some o
 <!-- specific/measurable goal for students to achieve -->
 *After this workshop, developers will be able to:*
 
-- find and read documentation for useful APIs
+- find and read documentation for useful web APIs
 - explain the difference between AJAX and normal HTTP synchronous web data transfer 
 - use AJAX with jQuery's `$.ajax` to GET data from an API
 - describe the meaning of `method:`, `url:`, and `success:` keys in jQuery's `$.ajax` syntax
